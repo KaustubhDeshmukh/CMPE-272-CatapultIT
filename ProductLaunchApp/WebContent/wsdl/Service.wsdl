@@ -1,0 +1,311 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<wsdl:definitions targetNamespace="http://connection" xmlns:apachesoap="http://xml.apache.org/xml-soap" xmlns:impl="http://connection" xmlns:intf="http://connection" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/" xmlns:wsdlsoap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+<!--WSDL created by Apache Axis version: 1.4
+Built on Apr 22, 2006 (06:55:48 PDT)-->
+ <wsdl:types>
+  <schema elementFormDefault="qualified" targetNamespace="http://connection" xmlns="http://www.w3.org/2001/XMLSchema">
+   <element name="bev">
+    <complexType>
+     <sequence>
+      <element name="user1" type="xsd:string"/>
+      <element name="user2" type="xsd:string"/>
+      <element name="user3" type="xsd:string"/>
+      <element name="user4" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="bevResponse">
+    <complexType>
+     <sequence>
+      <element name="bevReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="login">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="loginResponse">
+    <complexType>
+     <sequence>
+      <element name="loginReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signup">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="pwd" type="xsd:string"/>
+      <element name="name" type="xsd:string"/>
+      <element name="company" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="signupResponse">
+    <complexType>
+     <sequence>
+      <element name="signupReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rcall">
+    <complexType>
+     <sequence>
+      <element name="user" type="xsd:string"/>
+      <element name="user0" type="xsd:string"/>
+      <element name="user1" type="xsd:string"/>
+      <element name="user2" type="xsd:string"/>
+      <element name="user3" type="xsd:string"/>
+      <element name="user4" type="xsd:string"/>
+      <element name="user5" type="xsd:string"/>
+      <element name="user6" type="xsd:string"/>
+      <element name="user7" type="xsd:string"/>
+      <element name="user8" type="xsd:string"/>
+      <element name="user9" type="xsd:string"/>
+      <element name="user10" type="xsd:string"/>
+      <element name="user11" type="xsd:string"/>
+      <element name="user12" type="xsd:string"/>
+      <element name="user13" type="xsd:string"/>
+      <element name="user14" type="xsd:string"/>
+      <element name="user15" type="xsd:string"/>
+      <element name="user16" type="xsd:string"/>
+      <element name="user17" type="xsd:string"/>
+      <element name="user18" type="xsd:string"/>
+      <element name="user19" type="xsd:string"/>
+      <element name="user20" type="xsd:string"/>
+      <element name="user21" type="xsd:string"/>
+      <element name="user22" type="xsd:string"/>
+      <element name="user23" type="xsd:string"/>
+      <element name="user24" type="xsd:string"/>
+      <element name="user25" type="xsd:string"/>
+      <element name="user26" type="xsd:string"/>
+      <element name="user27" type="xsd:string"/>
+      <element name="user28" type="xsd:string"/>
+      <element name="user29" type="xsd:string"/>
+      <element name="user30" type="xsd:string"/>
+      <element name="user31" type="xsd:string"/>
+      <element name="user32" type="xsd:string"/>
+      <element name="user33" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+   <element name="rcallResponse">
+    <complexType>
+     <sequence>
+      <element name="rcallReturn" type="xsd:string"/>
+     </sequence>
+    </complexType>
+   </element>
+  </schema>
+ </wsdl:types>
+
+   <wsdl:message name="bevResponse">
+
+      <wsdl:part element="impl:bevResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signupRequest">
+
+      <wsdl:part element="impl:signup" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="rcallRequest">
+
+      <wsdl:part element="impl:rcall" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="rcallResponse">
+
+      <wsdl:part element="impl:rcallResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="signupResponse">
+
+      <wsdl:part element="impl:signupResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="bevRequest">
+
+      <wsdl:part element="impl:bev" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginRequest">
+
+      <wsdl:part element="impl:login" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:message name="loginResponse">
+
+      <wsdl:part element="impl:loginResponse" name="parameters">
+
+      </wsdl:part>
+
+   </wsdl:message>
+
+   <wsdl:portType name="Service">
+
+      <wsdl:operation name="bev">
+
+         <wsdl:input message="impl:bevRequest" name="bevRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:bevResponse" name="bevResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdl:input message="impl:loginRequest" name="loginRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:loginResponse" name="loginResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signup">
+
+         <wsdl:input message="impl:signupRequest" name="signupRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:signupResponse" name="signupResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rcall">
+
+         <wsdl:input message="impl:rcallRequest" name="rcallRequest">
+
+       </wsdl:input>
+
+         <wsdl:output message="impl:rcallResponse" name="rcallResponse">
+
+       </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:portType>
+
+   <wsdl:binding name="ServiceSoapBinding" type="impl:Service">
+
+      <wsdlsoap:binding style="document" transport="http://schemas.xmlsoap.org/soap/http"/>
+
+      <wsdl:operation name="bev">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="bevRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="bevResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="login">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="loginRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="loginResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="signup">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="signupRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="signupResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+      <wsdl:operation name="rcall">
+
+         <wsdlsoap:operation soapAction=""/>
+
+         <wsdl:input name="rcallRequest">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:input>
+
+         <wsdl:output name="rcallResponse">
+
+            <wsdlsoap:body use="literal"/>
+
+         </wsdl:output>
+
+      </wsdl:operation>
+
+   </wsdl:binding>
+
+   <wsdl:service name="ServiceService">
+
+      <wsdl:port binding="impl:ServiceSoapBinding" name="Service">
+
+         <wsdlsoap:address location="http://localhost:8080/ProductLaunchApp/services/Service"/>
+
+      </wsdl:port>
+
+   </wsdl:service>
+
+</wsdl:definitions>

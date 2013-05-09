@@ -1,0 +1,7 @@
+INDEX VERSION 1.122+E:\US studies\SJSU\Courses\272\Project\Workspace\.metadata\.plugins\org.eclipse.wst.jsdt.core\indexes
+85054511.index
+3579022863.index
+1883549939.index
+2807385442.index
+1748406984.index
+2243535545.index

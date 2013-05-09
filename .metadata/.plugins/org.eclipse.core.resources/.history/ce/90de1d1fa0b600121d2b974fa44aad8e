@@ -1,0 +1,88 @@
+/**
+ * Service.java
+ *
+ * This file was auto-generated from WSDL
+ * by the Apache Axis 1.4 Apr 22, 2006 (06:55:48 PDT) WSDL2Java emitter.
+ */
+
+package connection;
+
+import javax.jws.WebService;
+
+import org.rosuda.JRI.Rengine;
+import org.rosuda.REngine.REngine;
+
+
+
+@WebService
+public class Service {
+	
+	static int invocationCount = 0;
+	
+	static Rengine re =  null;
+	
+	public String login(String user, String pwd)
+	{
+		
+		DatabaseConnection db=new DatabaseConnection();
+		String result;
+		
+		//int id=Integer.parseInt(user);
+		
+		result = db.login1(user,pwd);
+		//System.out.println(result);
+		return result;
+	}
+	
+	public String signup(String user, String pwd, String name, String company)
+	{
+		
+		DatabaseConnection db=new DatabaseConnection();
+		String result;
+		
+		//int id=Integer.parseInt(user);
+		
+		result = db.signUp(user,pwd,name,company);
+		//System.out.println(result);
+		return result;
+	}
+
+	public String rcall(String user,String user0,String user1,String user2,String user3,String user4,String user5,String user6,String user7,String user8,String user9,String user10,String user11,String user12,String user13,String user14,String user15,String user16,String user17,String user18,String user19,String user20,String user21,String user22,String user23,String user24,String user25,String user26,String user27,String user28,String user29,String user30,String user31,String user32,String user33)
+	{
+		if(invocationCount == 0){
+			
+			Service.createREngine();
+			
+			invocationCount++;
+		}
+		
+		String result= null;
+		System.out.println("hi");
+		return result;
+	}
+	public String bev(String user1,String user2,String user3,String user4)
+	{
+		
+		String result= null;
+		return result;
+	}
+	
+	private static void createREngine(){
+		
+		
+		System.out.println("Creating Rengine (with arguments)");
+		
+		re=new Rengine(null, true, null);
+	    
+		System.out.println("Rengine created, waiting for R");
+	    
+		if (!re.waitForR()) {
+	        System.out.println("Cannot load R");
+	        return;
+	    }
+		
+		System.out.println("R-Engine created successfully");
+		
+	}
+	
+}

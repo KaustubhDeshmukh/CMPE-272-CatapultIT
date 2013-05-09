@@ -1,0 +1,130 @@
+import java.io.*;
+
+import java.awt.*;
+import javax.swing.*;
+
+import org.rosuda.JRI.Rengine;
+import org.rosuda.JRI.REXP;
+import org.rosuda.JRI.RMainLoopCallbacks;
+import org.rosuda.JRI.RConsoleOutputStream;
+
+class TextConsole2 implements RMainLoopCallbacks
+{
+    JFrame f;
+	
+    public JTextArea textarea = new JTextArea();
+
+    public TextConsole2() {
+        f = new JFrame();
+        f.getContentPane().add(new JScrollPane(textarea));
+        f.setSize(new Dimension(800,600));
+        f.show();
+    }
+
+    public void rWriteConsole(Rengine re, String text, int oType) {
+        textarea.append(text);
+    }
+    
+    public void rBusy(Rengine re, int which) {
+        System.out.println("rBusy("+which+")");
+    }
+    
+    public String rReadConsole(Rengine re, String prompt, int addToHistory) {
+        System.out.print(prompt);
+        try {
+            BufferedReader br=new BufferedReader(new InputStreamReader(System.in));
+            String s=br.readLine();
+            return (s==null||s.length()==0)?s:s+"\n";
+        } catch (Exception e) {
+            System.out.println("jriReadConsole exception: "+e.getMessage());
+        }
+        return null;
+    }
+    
+    public void rShowMessage(Rengine re, String message) {
+        System.out.println("rShowMessage \""+message+"\"");
+    }
+    
+    public String rChooseFile(Rengine re, int newFile) {
+	FileDialog fd = new FileDialog(f, (newFile==0)?"Select a file":"Select a new file", (newFile==0)?FileDialog.LOAD:FileDialog.SAVE);
+	fd.show();
+	String res=null;
+	if (fd.getDirectory()!=null) res=fd.getDirectory();
+	if (fd.getFile()!=null) res=(res==null)?fd.getFile():(res+fd.getFile());
+	return res;
+    }
+    
+    public void   rFlushConsole (Rengine re) {
+	}
+    
+    public void   rLoadHistory  (Rengine re, String filename) {
+    }			
+    
+    public void   rSaveHistory  (Rengine re, String filename) {
+    }			
+}
+
+public class rtest2 {
+	
+public void test(){
+//	System.out.println("Press <Enter> to continue (time to attach the debugger if necessary)");
+//    try { System.in.read(); } catch(Exception e) {};
+    System.out.println("Creating Rengine (with arguments)");
+	Rengine re=new Rengine(null, true, null);
+    System.out.println("Rengine created, waiting for R");
+    if (!re.waitForR()) {
+        System.out.println("Cannot load R");
+        return;
+    }
+	System.out.println("re-routing stdout/err into R console");
+	//System.setOut(new PrintStream(new RConsoleOutputStream(re, 0)));
+	//System.setErr(new PrintStream(new RConsoleOutputStream(re, 1)));
+	
+	System.out.println("Letting go; use main loop from now on");
+	
+	re.eval("x=c(1:10)");
+	double d = re.eval("mean(x)").asDouble();
+	System.out.println(d);
+}
+	
+    public static void main(String[] args) {
+      //  System.out.println("Press <Enter> to continue (time to attach the debugger if necessary)");
+      //  try { System.in.read(); } catch(Exception e) {};
+        System.out.println("Creating Rengine (with arguments)");
+		Rengine re=new Rengine(args, true, null);
+        System.out.println("Rengine created, waiting for R");
+        if (!re.waitForR()) {
+            System.out.println("Cannot load R");
+            return;
+        }
+		System.out.println("re-routing stdout/err into R console");
+		//System.setOut(new PrintStream(new RConsoleOutputStream(re, 0)));
+		//System.setErr(new PrintStream(new RConsoleOutputStream(re, 1)));
+		
+		//System.out.println("Letting go; use main loop from now on");
+		
+		re.eval("x=c(1:10)");
+		double d = re.eval("mean(x)").asDouble();
+		System.out.println(d);
+		
+		re.eval("File <- read.csv('C:\\\\SJSU\\\\R\\\\FinalData.csv')");
+		
+		re.eval("results <- lm(PricewithLaunchPriceOneMinusBV ~ ProcessorFrequency+processorCores+MacSupport+AndroidSupport+Windowssupport+BlackberryOSSupport+Displaysize+Displayquality+RAM+OnBoardMemory+ExpandedMemoryCapable+BatteryBackup+Batteryreverse+weight+Camera1BackSide+Camera2FrontSide+Cameraquality+HDMISupport+Touchinput+Thickness+DimensionsLenghtInTOBreadth+WiFiQuality+USBSupport+USBQuality+FourGSupport,data=File)");
+		
+		re.eval("X <- predict(results,data.frame(ProcessorFrequency=1,processorCores=2,MacSupport=0,AndroidSupport=1,Windowssupport=0,BlackberryOSSupport=0,Displaysize=10.1,Displayquality=2,RAM=1024,OnBoardMemory=16,ExpandedMemoryCapable=32,BatteryBackup=12,Batteryreverse=7000,weight=0.58,Camera1BackSide=3,Camera2FrontSide=0.7,Cameraquality=1,HDMISupport=0,Touchinput=8,Thickness=0.38,DimensionsLenghtInTOBreadth=69.69,WiFiQuality=4,USBSupport=1,USBQuality=2,FourGSupport=0,ThreeGSupport=0), interval=\"prediction\")");
+		
+		re.eval("Price <- function (x,y){x*y}");
+		
+		re.eval("Y <- Price(X[1],1)");
+		
+		
+		
+		Double price = re.eval("Y").asDouble();
+		
+		System.out.println("Price is "+price);
+		
+		
+				
+		
+    }
+}

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?><!-- Use this file to deploy some handlers/chains and services      --><!-- Two ways to do this:                                           --><!--   java org.apache.axis.client.AdminClient deploy.wsdd          --><!--      after the axis server is running                          --><!-- or                                                             --><!--   java org.apache.axis.utils.Admin client|server deploy.wsdd   --><!--      from the same directory that the Axis engine runs         --><deployment xmlns="http://xml.apache.org/axis/wsdd/" xmlns:java="http://xml.apache.org/axis/wsdd/providers/java">
+
+  <!-- Services from ServiceService WSDL service -->
+
+  <service name="Service" provider="java:RPC" style="wrapped" use="literal">
+      <parameter name="wsdlTargetNamespace" value="http://connection"/>
+      <parameter name="wsdlServiceElement" value="ServiceService"/>
+      <parameter name="schemaQualified" value="http://connection"/>
+      <parameter name="wsdlServicePort" value="Service"/>
+      <parameter name="className" value="connection.Service"/>
+      <parameter name="wsdlPortType" value="Service"/>
+      <parameter name="typeMappingVersion" value="1.2"/>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="login" qname="operNS:login" returnQName="retNS:loginReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pwd" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="bev" qname="operNS:bev" returnQName="retNS:bevReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user1" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user2" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user3" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user4" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="signup" qname="operNS:signup" returnQName="retNS:signupReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:pwd" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:name" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:company" type="tns:string"/>
+      </operation>
+      <operation xmlns:operNS="http://connection" xmlns:retNS="http://connection" xmlns:rtns="http://www.w3.org/2001/XMLSchema" name="rcall" qname="operNS:rcall" returnQName="retNS:rcallReturn" returnType="rtns:string" soapAction="">
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user0" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user1" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user2" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user3" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user4" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user5" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user6" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user7" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user8" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user9" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user10" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user11" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user12" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user13" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user14" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user15" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user16" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user17" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user18" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user19" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user20" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user21" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user22" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user23" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user24" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user25" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user26" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user27" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user28" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user29" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user30" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user31" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user32" type="tns:string"/>
+        <parameter xmlns:pns="http://connection" xmlns:tns="http://www.w3.org/2001/XMLSchema" qname="pns:user33" type="tns:string"/>
+      </operation>
+      <parameter name="allowedMethods" value="bev rcall login signup"/>
+
+  </service>
+</deployment>

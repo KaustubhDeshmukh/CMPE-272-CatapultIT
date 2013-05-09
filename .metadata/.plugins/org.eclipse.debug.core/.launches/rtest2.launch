@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<launchConfiguration type="org.eclipse.jdt.launching.RJava">
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_PATHS">
+<listEntry value="/RTest/src/rtest2.java"/>
+</listAttribute>
+<listAttribute key="org.eclipse.debug.core.MAPPED_RESOURCE_TYPES">
+<listEntry value="1"/>
+</listAttribute>
+<mapAttribute key="org.eclipse.debug.core.environmentVariables">
+<mapEntry key="PATH" value="C:\Users\Kau\Documents\R\win-library\3.0\rJava\jri\i386;C:\Program Files\Java\jdk1.6.0_39\jre\bin\server;C:\Program Files\R\R-3.0.0\bin\i386"/>
+</mapAttribute>
+<stringAttribute key="org.eclipse.jdt.launching.MAIN_TYPE" value="rtest2"/>
+<stringAttribute key="org.eclipse.jdt.launching.PROJECT_ATTR" value="RTest"/>
+</launchConfiguration>

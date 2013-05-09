@@ -1,0 +1,138 @@
+package Servlet;
+
+import java.util.HashMap;
+
+import org.rosuda.JRI.Rengine;
+
+import connection.Service;
+
+public class RCall {
+	
+static int invocationCount = 0;
+	
+	static Rengine re =  null;
+	
+	static final HashMap<String, String> companyBVMap = new HashMap<String,String>();
+	
+	{
+		companyBVMap.put("Samsung", "0.6");
+		companyBVMap.put("Apple", "0.68");
+		companyBVMap.put("Acer", "0.57");
+		companyBVMap.put("Toshiba", "0.35");
+		companyBVMap.put("Asus", "0.27");
+		companyBVMap.put("Lenovo", "0.59");
+		companyBVMap.put("Micromax", "0.03");
+		companyBVMap.put("HCL", "0.12");
+		companyBVMap.put("Amazon", "0.08");
+		companyBVMap.put("HP", "0.16");
+		companyBVMap.put("HTC", "0.66");
+		companyBVMap.put("Huawei", "0.3");
+		companyBVMap.put("LG", "0.04");
+		companyBVMap.put("Sony", "0.47");
+		companyBVMap.put("Blackberry", "0.56");
+		companyBVMap.put("Dell", "0.3");
+		companyBVMap.put("Google", "0.83");
+		companyBVMap.put("Others", "1");
+	
+		
+	}
+	
+	public String rcall(String companyName,String productName,String processorFrequency,String processCores,String processorQuality,String macSupport,String androidSupport,String windowsSupport,String blackberrySupport,String displaySize,String displayQuality,String displayResolution,String ram,String ramType,
+			String onBoardMemory,String expandableMemory,String batterybackUp,String batteryType,String weight,String backCameraMP,String backCameraQuality,String frontCameraMP,String frontCameraQuality,String hdmiSupport,String touchInput,String thickness,String dimensions,String wifiSupport,String wifiQuality,
+			String bluetoothSupport,String bluetoothQuality,String usbSupport,String usbQuality,String fourGSupport,String threeGSupport)
+	{
+		if(invocationCount == 0){
+			
+			RCall.createREngine();
+			
+			RCall.generateCoeff();
+			
+			invocationCount++;
+		}
+		
+		String brandValueApplicable = companyBVMap.get(companyName);
+		
+		Double actualBV = 1/(1 - Double.parseDouble(brandValueApplicable));
+		
+		System.out.println("Effective BV for "+companyName+" is "+actualBV);
+		
+		String predictRCall = "X <- predict(results,data.frame(ProcessorFrequency="+processorFrequency+",processorCores="+processCores+",MacSupport="+1+"," +
+				"AndroidSupport="+0+",Windowssupport="+0+",BlackberryOSSupport="+0+",Displaysize="+displaySize+",Displayquality="+displayQuality+",RAM="+ram+",OnBoardMemory="+onBoardMemory+"," +
+				"ExpandedMemoryCapable="+expandableMemory+",BatteryBackup="+batterybackUp+",Batteryreverse="+batteryType+",weight="+weight+"," +
+				"Camera1BackSide="+backCameraMP+",Camera2FrontSide="+frontCameraMP+",Cameraquality="+1+",HDMISupport="+hdmiSupport+",Touchinput="+touchInput+"," +
+				"Thickness="+thickness+",DimensionsLenghtInTOBreadth="+dimensions+",WiFiQuality="+wifiQuality+",USBSupport="+usbSupport+",USBQuality="+usbQuality+",FourGSupport="+fourGSupport+"," +
+				"ThreeGSupport="+threeGSupport+"), interval=\"prediction\")";
+		
+		System.out.println("R Call "+predictRCall);
+		
+		re.eval(predictRCall);
+		
+		re.eval("Price <- function (x,y){x*y}");
+		
+		re.eval("Y <- Price(X[1],"+actualBV+")");
+		
+		Double price = re.eval("Y").asDouble();
+		
+		return price.toString();
+	}
+	public String bev(String advertizingBudget,String consumerTradePromotionBudget,String salesForceBudget,String generalOtherBudget)
+	{
+				
+		String result= null;
+		return result;
+	}
+	
+	private synchronized static void createREngine(){
+		
+		
+		System.out.println("Creating Rengine (with arguments)");
+		
+		try{
+		
+		re=new Rengine(new String[2] , true, null);
+	    
+		System.out.println("Rengine created, waiting for R");
+	    
+		if (!re.waitForR()) {
+	        System.out.println("Cannot load R");
+	        return;
+	    }
+		
+		System.out.println("R-Engine created successfully");
+		
+		}catch( Exception createREngineExcep){
+			
+			System.out.println("Exception received while creating R-Engine "+createREngineExcep.toString());
+			
+			createREngineExcep.printStackTrace();
+		}
+	}
+	
+		private synchronized static void generateCoeff(){
+			
+			try{
+				
+				System.out.println("In generate coeff");
+		
+			re.eval("File <- read.csv('C:\\\\SJSU\\\\R\\\\FinalData.csv')");
+			
+			re.eval("results <- lm(PricewithLaunchPriceOneMinusBV ~ ProcessorFrequency+processorCores+MacSupport+AndroidSupport+Windowssupport+BlackberryOSSupport+Displaysize+Displayquality+RAM+OnBoardMemory+ExpandedMemoryCapable+BatteryBackup+Batteryreverse+weight+Camera1BackSide+Camera2FrontSide+Cameraquality+HDMISupport+Touchinput+Thickness+DimensionsLenghtInTOBreadth+WiFiQuality+USBSupport+USBQuality+FourGSupport,data=File)");
+			
+			}catch(Exception generateCoeffExcep){
+				
+				System.out.println("Exception while reading file and generating coeffcients "+generateCoeffExcep.toString());
+			}
+		}
+		
+		public static void main(String[] args) {
+		
+			RCall rc = new RCall();
+			
+			String price = rc.rcall("Apple","IPAD1","2.1","2","1","0","0","34","23","56","45","45","45","32","3","3","3","3","3","2","2","34","234","23","23","23","34","34","34","34","12","1","1","1","1");
+			
+			System.out.println("Price is "+price);
+				
+		}
+		
+
+}
